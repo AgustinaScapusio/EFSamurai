@@ -4,6 +4,7 @@ using EFSamurai.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFSamurai.DataAccess.Migrations
 {
     [DbContext(typeof(SamuraiDbContext))]
-    partial class SamuraiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231201171217_CreateKeySamuraiBattle")]
+    partial class CreateKeySamuraiBattle
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,58 +53,6 @@ namespace EFSamurai.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Battle");
-                });
-
-            modelBuilder.Entity("EFSamurai.Domain.Entities.BattleEvent", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BattleLogID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Order")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Sumary")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BattleLogID");
-
-                    b.ToTable("BattleEvents");
-                });
-
-            modelBuilder.Entity("EFSamurai.Domain.Entities.BattleLog", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BattleId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BattleId")
-                        .IsUnique();
-
-                    b.ToTable("BattleLogs");
                 });
 
             modelBuilder.Entity("EFSamurai.Domain.Entities.Quote", b =>
@@ -186,28 +137,6 @@ namespace EFSamurai.DataAccess.Migrations
                     b.ToTable("SecretIdentity");
                 });
 
-            modelBuilder.Entity("EFSamurai.Domain.Entities.BattleEvent", b =>
-                {
-                    b.HasOne("EFSamurai.Domain.Entities.BattleLog", "BattleLog")
-                        .WithMany("BattleEvents")
-                        .HasForeignKey("BattleLogID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("BattleLog");
-                });
-
-            modelBuilder.Entity("EFSamurai.Domain.Entities.BattleLog", b =>
-                {
-                    b.HasOne("EFSamurai.Domain.Entities.Battle", "Battle")
-                        .WithOne("BattleLog")
-                        .HasForeignKey("EFSamurai.Domain.Entities.BattleLog", "BattleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Battle");
-                });
-
             modelBuilder.Entity("EFSamurai.Domain.Entities.Quote", b =>
                 {
                     b.HasOne("EFSamurai.Domain.Entities.Samurai", "Samurai")
@@ -249,14 +178,7 @@ namespace EFSamurai.DataAccess.Migrations
 
             modelBuilder.Entity("EFSamurai.Domain.Entities.Battle", b =>
                 {
-                    b.Navigation("BattleLog");
-
                     b.Navigation("SamuraiBattles");
-                });
-
-            modelBuilder.Entity("EFSamurai.Domain.Entities.BattleLog", b =>
-                {
-                    b.Navigation("BattleEvents");
                 });
 
             modelBuilder.Entity("EFSamurai.Domain.Entities.Samurai", b =>
