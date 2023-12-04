@@ -15,9 +15,12 @@ namespace EFSamurai.DataAccess
         public DbSet<Samurai> Samurai => Set<Samurai>();
         public DbSet<Quote> Quote => Set<Quote>();
         public DbSet<SecretIdentity> SecretIdentity => Set<SecretIdentity>();
-        public DbSet<SamuraiBattle> SamuraiBattle {  get; set; }
+        public DbSet<SamuraiBattle> SamuraiBattle=>Set<SamuraiBattle>();
         public DbSet<BattleLog> BattleLogs => Set<BattleLog>();
         public DbSet<BattleEvent> BattleEvents => Set<BattleEvent>();
+
+        public DbSet<Battle> Battle => Set<Battle>();
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(

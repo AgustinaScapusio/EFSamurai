@@ -9,7 +9,7 @@ namespace EFSamurai.Domain.Entities
     public class BattleLog
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string Name { get; set; }=string.Empty;
         public int BattleId { get; set; }
         public Battle? Battle { get; set; }
         public ICollection<BattleEvent>? BattleEvents { get; set; }

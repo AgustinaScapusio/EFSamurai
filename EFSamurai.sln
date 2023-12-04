@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34322.80
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFSamurai.DataAccess", "EFSamurai.DataAccess\EFSamurai.DataAccess.csproj", "{C8CE075A-F60D-4A10-B18C-F0EAD07C7460}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFSamurai.DataAccess", "EFSamurai.DataAccess\EFSamurai.DataAccess.csproj", "{C8CE075A-F60D-4A10-B18C-F0EAD07C7460}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFSamurai.Domain", "EFSamurai.Domain\EFSamurai.Domain.csproj", "{94AD91A4-7560-4412-8C9F-0203B2519EDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFSamurai.Domain", "EFSamurai.Domain\EFSamurai.Domain.csproj", "{94AD91A4-7560-4412-8C9F-0203B2519EDE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFSamurai.App", "EFSamurai.App\EFSamurai.App.csproj", "{621BC19F-8D0D-4B97-AC28-3BBDC8097332}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFSamurai.NUnitTest", "EFSamurai.NUnitTest\EFSamurai.NUnitTest.csproj", "{B68E4243-3A6A-413D-B255-08AEE6F13F7F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{94AD91A4-7560-4412-8C9F-0203B2519EDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94AD91A4-7560-4412-8C9F-0203B2519EDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94AD91A4-7560-4412-8C9F-0203B2519EDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{621BC19F-8D0D-4B97-AC28-3BBDC8097332}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{621BC19F-8D0D-4B97-AC28-3BBDC8097332}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{621BC19F-8D0D-4B97-AC28-3BBDC8097332}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{621BC19F-8D0D-4B97-AC28-3BBDC8097332}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B68E4243-3A6A-413D-B255-08AEE6F13F7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B68E4243-3A6A-413D-B255-08AEE6F13F7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B68E4243-3A6A-413D-B255-08AEE6F13F7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B68E4243-3A6A-413D-B255-08AEE6F13F7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

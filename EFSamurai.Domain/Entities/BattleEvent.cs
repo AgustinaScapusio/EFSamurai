@@ -10,10 +10,10 @@ namespace EFSamurai.Domain.Entities
     {
         public int Id { get; set; }
         public int Order {  get; set; }
-        public string Sumary { get; set; }
-        public string Description { get; set; }
+        public string Sumary { get; set; }=string.Empty;
+        public string Description { get; set; }= string.Empty;
         public int BattleLogID { get; set; }
-        public BattleLog BattleLog { get; set; }
+        public BattleLog? BattleLog { get; set; }
 
     }
 }
