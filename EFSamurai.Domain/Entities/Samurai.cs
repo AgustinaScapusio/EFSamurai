@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EFSamurai.Domain.Entities
+﻿namespace EFSamurai.Domain.Entities
 {
     public class Samurai
     {
@@ -13,6 +7,6 @@ namespace EFSamurai.Domain.Entities
         public ICollection<Quote>? Quotes { get; set; }
         public ICollection<SamuraiBattle>? SamuraiBattles { get; set; }
         public HairStyle? HairStyle { get; set; }
-        public SecretIdentity? SecretIdentity{ get; set; } //Navigation property
+        public SecretIdentity? SecretIdentity { get; set; } //Navigation property
     }
 }

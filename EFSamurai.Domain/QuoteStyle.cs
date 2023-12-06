@@ -8,9 +8,8 @@ namespace EFSamurai.Domain
 {
     public enum QuoteStyle
     {
-        None = 0,
-        Lame=1,
-        Cheesy=2,
-        Awesome=3
+        Lame,
+        Cheesy,
+        Awesome
     }
 }

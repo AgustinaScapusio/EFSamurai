@@ -4,6 +4,7 @@ using EFSamurai.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFSamurai.DataAccess.Migrations
 {
     [DbContext(typeof(SamuraiDbContext))]
-    partial class SamuraiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231205084243_NewStuff")]
+    partial class NewStuff
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -240,13 +243,11 @@ namespace EFSamurai.DataAccess.Migrations
 
             modelBuilder.Entity("EFSamurai.Domain.Entities.SecretIdentity", b =>
                 {
-                    b.HasOne("EFSamurai.Domain.Entities.Samurai", "Samurai")
+                    b.HasOne("EFSamurai.Domain.Entities.Samurai", null)
                         .WithOne("SecretIdentity")
                         .HasForeignKey("EFSamurai.Domain.Entities.SecretIdentity", "SamuraiID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Samurai");
                 });
 
             modelBuilder.Entity("EFSamurai.Domain.Entities.Battle", b =>
