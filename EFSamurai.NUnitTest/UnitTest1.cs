@@ -138,7 +138,7 @@ namespace EFSamurai.NUnitTest
         public void CreateBattle_TwoBattle_ObjectsAreCorrect()
         {   //Arrange
             Battle expectedBattle = new Battle()
-            {   Id=12,
+            {   Id=13,
                 Name = "Battle of Winterfell",
                 IsBrutal = true,
                 Description = "between humans and whitewalkers"
@@ -258,27 +258,29 @@ namespace EFSamurai.NUnitTest
         [Test]
         public void CreateSamuraiWithRelatedData()
         {   //Arrange
-            using SamuraiDbContext db= new();
+            using SamuraiDbContext db = new();
             Samurai samurai = new()
-            {   Name = "Mario",
+            {
+                Name = "Mario",
                 HairStyle = HairStyle.Western,
                 Quotes = new List<Quote> { new() { Text = "Live, laugh, love" } },
                 SecretIdentity = new() { RealName = "Link" },
             };
-            Battle battle = new Battle() 
-            {   Name="Battle of Winterfell",
-                Description="When Mario killed whitewalkers in Winterfell with Luigi",
+            Battle battle = new Battle()
+            {
+                Name = "Battle of Winterfell",
+                Description = "When Mario killed whitewalkers in Winterfell with Luigi",
             };
-            Quote quote = new Quote() { Text= "Live, laugh ,love" };
+            Quote quote = new Quote() { Text = "Live, laugh ,love" };
             SecretIdentity secretIdentity = new() { RealName = "Link" };
             EFMethods.CreateBattle(battle);
-            
+
             //Act
-            EFMethods.CreateSamuraiWithRelatedData(samurai,secretIdentity,quote, battle);
-            Samurai actual=db.Samurai
-                .Where(s=>s.Name =="Mario").Single();
+            EFMethods.CreateSamuraiWithRelatedData(samurai, secretIdentity, quote, battle);
+            Samurai actual = db.Samurai
+                .Where(s => s.Name == "Mario").Single();
             //Assert
-            Assert.That(actual.HairStyle,Is.EqualTo(samurai.HairStyle));
+            Assert.That(actual.HairStyle, Is.EqualTo(samurai.HairStyle));
             Assert.That(actual.Quotes, Is.EqualTo(samurai.Quotes));
             Assert.That(actual.SecretIdentity, Is.EqualTo(samurai.SecretIdentity));
         }

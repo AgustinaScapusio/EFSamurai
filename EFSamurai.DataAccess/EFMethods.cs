@@ -99,7 +99,7 @@ namespace EFSamurai.DataAccess
             else
                 return false;
         }
-        public static bool UpdateSamuraiSetSecretIdentityRealName(int samuraiId, string realName)
+        public static bool UpdateSamuraiSetSecretIdentityRealName(int samuraiId, string? realName)
         {
             using SamuraiDbContext db = new();
             if (db.Samurai.Any(s => s.Id == samuraiId))
@@ -110,6 +110,31 @@ namespace EFSamurai.DataAccess
             }
             return false;
         }
+
+        public static void WriteBattleEventsBySamurai(int samuraiId)
+        {
+            using SamuraiDbContext db = new();
+            Samurai? samurai = db.Samurai
+                .Include(s => s.SamuraiBattles)!
+                .ThenInclude(sb => sb.Battle)
+                .ThenInclude(b => b!.BattleLog)
+                .ThenInclude(bl => bl!.BattleEvents)
+                .SingleOrDefault(s => s.Id == samuraiId);
+
+            if (samurai != null && samurai.SamuraiBattles != null)
+            {
+                foreach (SamuraiBattle samuraiBattle in samurai.SamuraiBattles)
+                {
+
+                    foreach (BattleEvent battleEvent in samuraiBattle.Battle?.BattleLog?.BattleEvents ?? new List<BattleEvent>())
+                    {
+                        Console.WriteLine(battleEvent);
+                    }
+                    
+                }
+            }
+        }
+
         public static int CreateBattle(Battle battle)
         {
             using SamuraiDbContext db = new();
@@ -180,9 +205,9 @@ namespace EFSamurai.DataAccess
         public static void CreateSamuraiWithRelatedData(Samurai samurai, SecretIdentity sI, Quote quote, Battle battle)
         {
             using SamuraiDbContext db = new();
-            List<int> samuraiIds = new() { samurai.Id };
             CreateSamurai(samurai);
-            UpdateSamuraiSetSecretIdentityRealName(sI.Id, sI.RealName!);
+            List<int> samuraiIds = new() { samurai.Id };
+            UpdateSamuraiSetSecretIdentityRealName(samurai.Id, sI.RealName);
             CreateBattle(battle);
             LinkBattleAndSamurais(battle.Id, samuraiIds);
             db.Add(quote);
@@ -239,7 +264,7 @@ namespace EFSamurai.DataAccess
 
             List<Battle> battles = db.Battle.Include(b => b.BattleLog)
                                           .ThenInclude(b => b!.BattleEvents)
-                                          .Where(b => b.IsBrutal == isBrutal && b.StartDate <= from && b.EndDate >= to).ToList();
+                                          .Where(b => b.IsBrutal == isBrutal && b.StartDate >= from && b.EndDate <= to).ToList();
             
             List<string> text = new();
             foreach (Battle b in battles)

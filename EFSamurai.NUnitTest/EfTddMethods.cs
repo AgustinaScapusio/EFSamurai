@@ -91,7 +91,12 @@ namespace EFSamurai.DataAccess
         public static int CreateBattle(string name, bool isBrutal, string description, DateTime startDate, DateTime EndDate)
         {
             using SamuraiDbContext db = new SamuraiDbContext();
-            Battle battle = new Battle() { Name = name, IsBrutal = isBrutal, Description = description, StartDate = startDate, EndDate = EndDate };
+            Battle battle = new Battle() { 
+                Name = name, 
+                IsBrutal = isBrutal, 
+                Description = description, 
+                StartDate = startDate, 
+                EndDate = EndDate };
             db.Add(battle);
             db.SaveChanges();
             return battle.Id;
