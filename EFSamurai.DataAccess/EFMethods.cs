@@ -270,7 +270,7 @@ namespace EFSamurai.DataAccess
             foreach (Battle b in battles)
             {
                 StringBuilder sb = new StringBuilder();
-                sb.AppendLine("----------------------------------------------------------");
+                sb.AppendLine("---------------------------------------------------------");
                 sb.AppendLine($"Name of the battle:            {b.Name}");
                 sb.AppendLine($"Log name            {b.BattleLog?.Name ?? "Unknown"}");
                 foreach (BattleEvent battle in b.BattleLog?.BattleEvents ?? new List<BattleEvent> { new() { Sumary = "Unknown" } })
